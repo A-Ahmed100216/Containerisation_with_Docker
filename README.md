@@ -74,40 +74,51 @@ docker commit name_of_image/container_id
 ```
 docker images
 ```
-5. Start a container
+6. Start a container
 ```
 docker start container_id
 ```
-6. Stop a container - Retains any data stored
+7. Stop a container - Retains any data stored
 ```
 docker stop container_id/name
 ```
-7. Remove a container - Gets rid of any data stored in the container
+8. Remove a container - Gets rid of any data stored in the container
 ```
 docker rm container_id/name
 ```
-8. Check running containers
+9. Check running containers
 ```bash
 docker ps
 ```
 
-8. Check all existing containers and their status
+10. Check all existing containers and their status
 ```bash
 docker ps -a
 ```
-9. Logging into a container
+11. Logging into a container
 ```bash
 docker exec -it name_of_container/id
 ```
 
 
 ### Running containers
+* We run a container using the following syntax:
+```
+docker run -d -p 80:80 container_name
+```
+* -d and -p flags enable us to run in dissociated mode so we gain access to the terminal.
+* Port mapping is as follows `localhost_port:container_port`
+
 #### 1. Nginx
-* Run the container using the following commmand
+* Run the container using the following command
 ```
 docker run -d -p 80:80 nginx
 ```
-* -d and -p flags enable us to run in dissociated mode so we gain access to the terminal
+* We can stop the container.
+```
+docker stop 2e86da2806cd
+```
+* Upon stopping the container, if we navigate to localhost webpage, we should have a server timeout error.
 #### 2. Ghost
 * Run using
 ```
@@ -138,3 +149,37 @@ docker ps
 ```
 localhost:2368
 ```
+#### 3. Docker Documentation
+* We can gain access to all of the docker documentation on our localhost by running the following container.
+```bash
+docker run -d -p 4000:4000 docs/docker.github.io
+```
+* NB: This will take some time to install due to the size of the container.
+* We can view the documentation by typing `localhost:4000` in the search bar.
+
+### Logging into containers
+* Logging into the container allows us to change the configuration.
+* Return back to the nginx container, if it is not started, start it.
+* Log into the container using the following command.
+```bash
+docker exec -it 839c6c5a0a4c bash
+```
+* If we want to change the index html page, we can navigate to its location and change it. `nano` may need to be installed.
+```
+/usr/share/nginx/html
+apt-get install nano
+```
+* If we refresh the webpage, changes we made to the file will be taken into effect.
+
+#### Task - Copying in files
+* We can replace the index.html file with our own file by copying it in to the nginx container.
+* In order to copy files from the local host TO a container, the syntax is:
+```
+docker cp path/to/file.txt container_id:/path/to/location/on/host
+```
+* Thus, for this task, the following command was used:
+```
+docker cp ~/Containerisation/index.html 839c6c5a0a4c:/usr/share/nginx/html
+```
+* Upon navigating to the webadress `localhost:99`, the following page can be viewed.
+![index_page](index.png)
