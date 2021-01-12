@@ -17,7 +17,7 @@ WORKDIR usr/src/app
 # Copy app files into the container
 COPY app/ .
 
-# Install dependencies in the local node_moduls folder
+# Install dependencies in the local node_modules folder
 RUN npm install
 
 # Expose port 3000
@@ -36,5 +36,5 @@ docker build -t mina100216/eng74-nodejs-app-dockerised .
 ```
 docker run -d -p 3000:3000 mina100216/eng74-nodejs-app-dockerised
 ```
-5. Confirm the app is visible on localhost:3000.        
+6. Confirm the app is visible on localhost:3000.        
 ![app](app.png)

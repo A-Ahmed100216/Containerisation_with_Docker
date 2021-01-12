@@ -1,23 +1,22 @@
 # Containerisation with Docker
 
-## What is Docker?
+## Introduction
+### What is Docker?
 * Docker is an open-source platform used for containerisation.
 * It enables us to separate applications from the infrastructure.
 * It allows us to deliver software faster
 * Docker is written in GO language.
-
 ### Why Docker?
 * Multi-billion dollar companies are using or adopting Docker including eBay, Netflix, and Sky.
-
+* Open source
 ### Demand and future of Docker
 * Docker adoption is anticipated by 50% by the end of 2020.
-
-## What is a Container?
+### What is a Container?
 * A standardised unit of software.
 * Packages code and all its dependencies so applications can run quickly and reliably from one environment to another.
 * Container images are lightweight, standalone, executable packages of software.
 * They include everything needed to run an app (code, runtime, system tools, libraries, settings).      
-![container](/containers.png).      
+![container](images/containers.png).      
 * Images become containers when they run on Docker Engine.
 * Such containers are:
   * Standard - Portable anywhere
@@ -31,11 +30,11 @@
 * VM works with hypervisor to connect guest OS/VM with host OS.
 
 ## Docker Architecture
-![Architecture](architecture.png)
+![Architecture](images/architecture.png)
 
-# Docker Setup and Installation
+## Docker Setup and Installation
 1. Download Docker Desktop for relevant OS.
-2. While waiting for installtion, create an account on Docker Hub.
+2. While waiting for installation, create an account on Docker Hub.
 3. Login to Docker Hub and create a new repository.
 4. Wait for Docker Desktop to finish installation and open the Desktop app.
 4. Once installed, an icon should appear on the menu bar (top right).
@@ -104,7 +103,6 @@ docker exec -it name_of_container/id
 ```
   * `-it`= interactive shell
 
-
 ### Running containers
 * We run a container using the following syntax:
 ```
@@ -137,7 +135,7 @@ docker images
 docker ps
 ```
 * Check the webpage is running by typing `localhost:2368` in a browser.    
-![ghost](ghost.png)
+![ghost](images/ghost.png)
 * Stop and delete ghost container
 ```
 docker stop ed3280431d6c
@@ -186,7 +184,7 @@ docker cp path/to/file.txt container_id:/path/to/location/on/host
 docker cp ~/Containerisation/index.html 839c6c5a0a4c:/usr/share/nginx/html
 ```
 * Upon navigating to the webadress `localhost:99`, the following page can be viewed.
-![index_page](index.png)
+![index_page](images/index.png)
 
 
 ### Docker Hub Repositories
@@ -194,7 +192,7 @@ docker cp ~/Containerisation/index.html 839c6c5a0a4c:/usr/share/nginx/html
 * Make sure the container is running and obtain the container_id.
 * Then run the following command.
 ```bash
-docker commit container_id repo_name
+docker commit container_id mina100216/repo_name
 ```
 2. Push to Docker Hub
 * Ensure the name matches exactly
@@ -246,6 +244,7 @@ docker logs container_id >> logs.txt
 * `COPY` - copy files/folder from localhost to container/image.
 * `EXPOSE` - default port
 * `CMD` - the execution command `["nginx","-g","daemon_off"]`
+#### Task - hosting static website 
 * The final Dockerfile is as follows:
 ```
 # Build this image from the offical nginx image
