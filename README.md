@@ -9,7 +9,6 @@
 ### Why Docker?
 * Multi-billion dollar companies are using or adopting Docker including eBay, Netflix, and Sky.
 
-
 ### Demand and future of Docker
 * Docker adoption is anticipated by 50% by the end of 2020.
 
@@ -74,7 +73,11 @@ docker commit name_of_image/container_id
 ```
 docker images
 ```
-6. Start a container
+6. Delete an image
+```bash
+docker rmi image_id -f
+```
+7. Start a container
 ```
 docker start container_id
 ```
@@ -183,3 +186,29 @@ docker cp ~/Containerisation/index.html 839c6c5a0a4c:/usr/share/nginx/html
 ```
 * Upon navigating to the webadress `localhost:99`, the following page can be viewed.
 ![index_page](index.png)
+
+
+### Docker Hub Repositories
+* Naming convention is critical
+1. Commit
+* Make sure the container is running and obtain the container_id.
+* Then run the following command.
+```bash
+docker commit container_id repo_name
+```
+2. Push to Docker Hub
+```bash
+docker push mina100216/repo_name
+```
+3. In order to confirm the image has been pushed successfully, check on DockerHub.  
+3. Return to terminal and delete the image so it pulls from DockerHub and not from the localhost.
+```
+docker rmi image_id -f
+```
+4. Run the container.
+```
+docker run -d -p 80:80 mina100216/repo_name
+```
+#### Trouble Shooting
+* Naming convention is critical- ensure spelling and case is correct, copy if needs be.
+* Ensure you are logged in. Login in via the desktop app or run `docker login` on the terminal. 
