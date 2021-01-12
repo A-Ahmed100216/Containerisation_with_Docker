@@ -81,24 +81,24 @@ docker rmi image_id -f
 ```
 docker start container_id
 ```
-7. Stop a container - Retains any data stored
+8. Stop a container - Retains any data stored
 ```
 docker stop container_id/name
 ```
-8. Remove a container - Gets rid of any data stored in the container
+9. Remove a container - Gets rid of any data stored in the container
 ```
 docker rm container_id/name
 ```
-9. Check running containers
+10. Check running containers
 ```bash
 docker ps
 ```
 
-10. Check all existing containers and their status
+11. Check all existing containers and their status
 ```bash
 docker ps -a
 ```
-11. Logging into a container
+12. Logging into a container
 ```bash
 docker exec -it name_of_container/id
 ```
@@ -189,7 +189,6 @@ docker cp ~/Containerisation/index.html 839c6c5a0a4c:/usr/share/nginx/html
 
 
 ### Docker Hub Repositories
-* Naming convention is critical
 1. Commit
 * Make sure the container is running and obtain the container_id.
 * Then run the following command.
@@ -197,18 +196,19 @@ docker cp ~/Containerisation/index.html 839c6c5a0a4c:/usr/share/nginx/html
 docker commit container_id repo_name
 ```
 2. Push to Docker Hub
+* Ensure the name matches exactly
 ```bash
 docker push mina100216/repo_name
 ```
 3. In order to confirm the image has been pushed successfully, check on DockerHub.  
-3. Return to terminal and delete the image so it pulls from DockerHub and not from the localhost.
+4. Return to terminal and delete the image so it pulls from DockerHub and not from the localhost.
 ```
 docker rmi image_id -f
 ```
-4. Run the container.
+5. Run the container.
 ```
 docker run -d -p 80:80 mina100216/repo_name
 ```
 #### Trouble Shooting
 * Naming convention is critical- ensure spelling and case is correct, copy if needs be.
-* Ensure you are logged in. Login in via the desktop app or run `docker login` on the terminal. 
+* Ensure you are logged in. Login in via the desktop app or run `docker login` on the terminal.
