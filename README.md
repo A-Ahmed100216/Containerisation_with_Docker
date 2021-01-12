@@ -227,7 +227,44 @@ docker run -d -p 80:80 mina100216/repo_name
 docker exec -it container_id bash
 cd /var/log/nginx
 ```
-* Logout, or open a new termianal. To record logs, we can copy into a separate file using the following command. 
+* Logout, or open a new termianal. To record logs, we can copy into a separate file using the following command.
 ```
 docker logs container_id >> logs.txt
 ```
+
+## Building Docker Images
+* To build a docker image, we need to create a `Dockerfile`.
+* This file enables us to automate tasks in an image/container
+* The file contents depends on the client requirements but generally we need to know the dependencies to run the app.
+  * We need to wrap all dependencies in the Dockerfile
+
+### Dockerfile syntax
+* Each keyword builds a layer.
+* The main keywords are:
+* `FROM` - tell docker which image has been used to build our image. In our case, `nginx` is base.
+* `LABEL MAINTAINER=email_address`
+* `COPY` - copy files/folder from localhost to container/image.
+* `EXPOSE` - default port
+* `CMD` - the execution command `["nginx","-g","daemon_off"]`
+* The final Dockerfile is as follows:
+```
+# Build this image from the offical nginx image
+FROM nginx
+
+# Label is used as a reference if you need to know who build the image
+LABEL MAINTAINER=email_address
+
+# Copy index.html file from localhost to default location in container
+COPY index.html /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Cmd will run this command once all other instruction have been successfully completed
+CMD ["nginx","-g","daemon off;"]`
+```
+* Build an image using the following command
+```
+docker build -t mina100216/repo_name .
+```
+  * `.` directs to the current working directory
