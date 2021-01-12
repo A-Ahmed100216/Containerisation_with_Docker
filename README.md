@@ -102,6 +102,7 @@ docker ps -a
 ```bash
 docker exec -it name_of_container/id
 ```
+  * `-it`= interactive shell
 
 
 ### Running containers
@@ -212,3 +213,21 @@ docker run -d -p 80:80 mina100216/repo_name
 #### Trouble Shooting
 * Naming convention is critical- ensure spelling and case is correct, copy if needs be.
 * Ensure you are logged in. Login in via the desktop app or run `docker login` on the terminal.
+
+## Why link
+* Create webhooks and automate builds.
+
+## Advanced Docker commands
+* `docker history image_id` - history of the image, can be used to confirm whether the image is official.
+* `docker inspect image_id` - view the breakdown of the image.
+* `docker logs container_id`
+
+### Task
+* Accessing nginx logs
+```
+/var/log/nginx
+```
+* Copying logs into a separate files
+```
+docker logs container_id >> logs.txt
+```
