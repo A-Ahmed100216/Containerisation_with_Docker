@@ -220,14 +220,14 @@ docker run -d -p 80:80 mina100216/repo_name
 ## Advanced Docker commands
 * `docker history image_id` - history of the image, can be used to confirm whether the image is official.
 * `docker inspect image_id` - view the breakdown of the image.
-* `docker logs container_id`
-
+* `docker logs container_id` - view logs of a specific container.
 ### Task
-* Accessing nginx logs
+* To accessing nginx logs, log into the container and the navigate to the location of the logs. These are protected files so cannot be viewed.
 ```
-/var/log/nginx
+docker exec -it container_id bash
+cd /var/log/nginx
 ```
-* Copying logs into a separate files
+* Logout, or open a new termianal. To record logs, we can copy into a separate file using the following command. 
 ```
 docker logs container_id >> logs.txt
 ```
