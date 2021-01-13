@@ -99,7 +99,7 @@ docker ps -a
 ```
 12. Logging into a container
 ```bash
-docker exec -it name_of_container/id
+docker exec -it name_of_container/id bash
 ```
   * `-it`= interactive shell
 
@@ -244,7 +244,7 @@ docker logs container_id >> logs.txt
 * `COPY` - copy files/folder from localhost to container/image.
 * `EXPOSE` - default port
 * `CMD` - the execution command `["nginx","-g","daemon_off"]`
-#### Task - hosting static website 
+#### Task - hosting static website
 * The final Dockerfile is as follows:
 ```
 # Build this image from the offical nginx image
@@ -267,3 +267,38 @@ CMD ["nginx","-g","daemon off;"]`
 docker build -t mina100216/repo_name .
 ```
   * `.` directs to the current working directory
+
+## Multi_stage Production Environments
+* Multistage builds enable us to use Dockerfiles while keeping the size down.
+* They allow you to use multiple FROM statements in your Dockerfile.
+* You can copy artifacts from one stage to another, leaving behind anything you don’t want.
+
+### Development Environment
+* Dockerfile code for app is follows
+```
+# Creating microservices for nodejs front end using Docker
+FROM node
+WORKDIR /usr/src/app
+COPY app/ .
+RUN npm install
+EXPOSE 3000
+CMD ["node","app.js"]
+```
+### Production Environment - Multi-stage
+```
+# Create an alias
+FROM node as APP
+WORKDIR /usr/src/app
+COPY app/ .
+RUN npm install
+
+# Building a multi stage layer
+FROM node:alpine
+
+# This is the magic line
+COPY --from=APP /usr/src/app usr/src/app
+
+WORKDIR /usr/src/app
+EXPOSE 3000
+CMD ["node","app.js"]
+```

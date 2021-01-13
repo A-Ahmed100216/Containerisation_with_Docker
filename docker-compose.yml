@@ -1,0 +1,17 @@
+version: "2"
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    environment:
+      DB_HOST: db:27017
+    ports:
+      - "3000:3000"
+    links:
+      - db
+  db:
+    container_name: database
+    build: ./db
+    ports:
+      - "27017:27017"
