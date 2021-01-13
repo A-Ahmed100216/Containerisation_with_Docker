@@ -1,6 +1,7 @@
 # Microservices
 
 # Monolith Architecture
+![monolith](images/monolith.png)
 * Means 'composed all in one piece'
 * Traditional approach to architecture
 * single tiered software application i.e. various components combined into a single program.
@@ -17,8 +18,17 @@
 
 
 # Microservice Architecture?
+![micro](images/microservices.png)
+
 * Architectural approach wherein services are split up into smaller nodes, called microservices.
 * Services built around business capabilities so each microservice typically addresses one business capability.
+* Split your application into smaller, inter-connected services that are:
+  * Highly maintainable and testable
+  * Loosely coupled
+  * Independently deployable
+  * Organsied around business capabilities
+  * Owned by small teams
+
 
 | Benefits                                                                                                               | Drawbacks                                                                                     |
 |------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
@@ -46,3 +56,16 @@
 * For small projects:
   * Require lots of resources to build and maintain.
   * Not cost-effective
+
+# Kubernetes
+* Open-source system for automating deployment, scaling, and management of containerised applications.
+* Orchestration manager for containers
+* Also known as K8
+* Enables you to manage containers and their behaviour
+* Creates pods  
+* Benefits
+  * Self-healing - if something goes wrong with a container, Kubernetes can spin up a new one.
+  * Scale on demand
+  * Auto scale
+  * Assign individual IPs to containers
+  * Use ingress rules to deal with web-facing interface.
