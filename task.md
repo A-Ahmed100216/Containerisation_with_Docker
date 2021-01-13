@@ -37,7 +37,7 @@ docker build -t mina100216/eng74-nodejs-app-dockerised .
 docker run -d -p 3000:3000 mina100216/eng74-nodejs-app-dockerised
 ```
 6. Confirm the app is visible on localhost:3000.        
-![app](app.png)
+![app](images/app.png)
 
 ## Increment - Containerise the DB
 1. Create a Dockerfile for the database. This will need to be in a separate directory due to conflicts associated with naming convention. The Dockerfile is as follows
